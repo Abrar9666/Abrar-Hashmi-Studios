@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* ============ ABRAR HASHMI STUDIOS — DESIGN SYSTEM (prompt §4-7) ============ */
+:root{
+  --bg:#08090D; --bg2:#0D0F15; --elev:#12151C;
+  --glass:rgba(255,255,255,0.055); --glass-strong:rgba(255,255,255,0.085);
+  --glass-border:rgba(255,255,255,0.12); --glass-hi:rgba(255,255,255,0.18);
+  --text:#F5F3EF; --text2:#A9A7A3; --muted:#74736F;
+  --rose:#C9828F; --amber:#D6A45C; --teal:#6EAFA8; --violet:#9A8FBC;
+  --warm:#FFF9F0; --success:#8DBA9E; --error:#D47D7D;
+  --shadow:0 20px 60px rgba(0,0,0,0.25); --shadow-deep:0 30px 100px rgba(0,0,0,0.38);
+  --ease:cubic-bezier(0.22,1,0.36,1); --ease-soft:cubic-bezier(0.16,1,0.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(201,130,143,.35)}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:500;margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+img,video,canvas{display:block;max-width:100%}
+
+/* film grain (§7) */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:90;opacity:.032;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  animation:grain 9s steps(6) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-2%,2%)}40%{transform:translate(2%,-1%)}60%{transform:translate(-1%,-2%)}80%{transform:translate(1%,2%)}}
+
+/* aurora (§46) */
+.aurora{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;will-change:transform}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-30px) scale(1.08)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-60px,40px) scale(.96)}}
+
+/* layout (§6) */
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:48px}
+@media(max-width:1023px){.wrap{padding-inline:32px}}
+@media(max-width:767px){.wrap{padding-inline:20px}}
+section.blk{padding-block:170px;position:relative}
+@media(max-width:1023px){section.blk{padding-block:120px}}
+@media(max-width:767px){section.blk{padding-block:90px}}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin:0 0 18px}
+.section-title{font-size:clamp(42px,6vw,82px);line-height:.95;letter-spacing:-.05em}
+.section-sub{color:var(--text2);max-width:560px;margin-top:18px;font-size:17px}
+.section-head{margin-bottom:56px}
+
+/* glass (§47) */
+.glass-card{position:relative;background:var(--glass);border:1px solid rgba(255,255,255,.11);border-radius:24px;
+  backdrop-filter:blur(24px) saturate(125%);-webkit-backdrop-filter:blur(24px) saturate(125%);
+  box-shadow:0 20px 60px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.08);
+  transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease)}
+.glass-card:hover{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.16)}
+
+/* buttons (§28) */
+.btn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 22px;border-radius:16px;font-weight:600;font-size:15px;transition:transform .3s var(--ease),background .3s,box-shadow .3s;will-change:transform}
+.btn-primary{background:var(--text);color:#08090D}
+.btn-primary:hover{background:var(--warm);box-shadow:0 12px 30px rgba(255,255,255,.10);transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text)}
+.btn-ghost:hover{background:rgba(255,255,255,.10);transform:translateY(-2px)}
+
+/* icon tile (§48) + social tile */
+.icon-tile{width:42px;height:42px;flex:none;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);color:var(--text)}
+.social-tile{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:var(--glass);border:1px solid var(--glass-border);
+  backdrop-filter:blur(24px) saturate(125%);box-shadow:inset 0 1px 0 rgba(255,255,255,.10), var(--shadow);color:var(--text);
+  transition:transform .35s var(--ease),background .35s,border-color .35s}
+.social-tile:hover{transform:translateY(-4px) scale(1.04);background:var(--glass-strong);border-color:var(--glass-hi)}
+.social-tile svg{width:24px;height:24px}
+
+/* marquee (§23/34) */
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;gap:16px;width:max-content;animation:mq 36s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee.rev .marquee-track{animation-direction:reverse}
+@keyframes mq{to{transform:translateX(-50%)}}
+.tool-pill{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;background:var(--glass);border:1px solid rgba(255,255,255,.10);color:var(--text2);font-weight:600;font-size:14px;white-space:nowrap;transition:color .3s,border-color .3s}
+.tool-pill:hover{color:var(--warm);border-color:rgba(214,164,92,.45)}
+
+/* hero floating card (§14) */
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.float-card{animation:floaty 6s ease-in-out infinite}
+
+/* abstract generated art (SVG/canvas textures, site palette) */
+.art-rose{background:radial-gradient(circle at 25% 20%,rgba(201,130,143,.35),transparent 55%),radial-gradient(circle at 80% 85%,rgba(214,164,92,.22),transparent 50%),linear-gradient(160deg,#171019,#0D0F15)}
+.art-teal{background:radial-gradient(circle at 75% 20%,rgba(110,175,168,.32),transparent 55%),radial-gradient(circle at 15% 85%,rgba(154,143,188,.20),transparent 50%),linear-gradient(200deg,#0C1518,#0D0F15)}
+.art-amber{background:radial-gradient(circle at 30% 80%,rgba(214,164,92,.30),transparent 55%),radial-gradient(circle at 85% 15%,rgba(201,130,143,.22),transparent 50%),linear-gradient(140deg,#181208,#0D0F15)}
+.art-violet{background:radial-gradient(circle at 70% 75%,rgba(154,143,188,.30),transparent 55%),radial-gradient(circle at 20% 20%,rgba(110,175,168,.20),transparent 50%),linear-gradient(180deg,#120F1C,#0D0F15)}
+
+/* cursor (§29) */
+.cursor-ring{position:fixed;top:0;left:0;width:32px;height:32px;border:1px solid rgba(255,255,255,.25);border-radius:50%;pointer-events:none;z-index:200;display:grid;place-items:center;transition:width .25s,height .25s,background .25s}
+.cursor-ring.big{width:54px;height:54px;background:rgba(255,255,255,.07)}
+.cursor-dot{width:4px;height:4px;border-radius:50%;background:var(--warm)}
+@media(pointer:coarse){.cursor-ring{display:none}}
+
+/* form */
+.field{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:14px;padding:14px 16px;color:var(--text);font:inherit;font-size:15px;transition:border-color .25s,background .25s}
+.field::placeholder{color:var(--muted)}
+.field:focus{outline:none;border-color:rgba(214,164,92,.6);background:rgba(255,255,255,.07)}
+.field.err{border-color:var(--error)}
+label.flabel{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);margin-bottom:8px}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:150;background:rgba(5,6,9,.88);backdrop-filter:blur(30px);display:grid;place-items:center;padding:24px}
+
+/* reduced motion (§16) */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
