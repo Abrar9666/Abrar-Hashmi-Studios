@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://abrarhashmi.site/sitemap.xml
